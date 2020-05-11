@@ -9,4 +9,5 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
+    <string name="like_message">Like message</string>
 </resources>

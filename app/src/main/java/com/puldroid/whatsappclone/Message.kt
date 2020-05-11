@@ -1,5 +1,7 @@
 package com.puldroid.whatsappclone
 
+import android.content.Context
+import com.puldroid.whatsappclone.utils.formatAsHeader
 import java.util.*
 
 interface ChatEvent {
@@ -9,16 +11,18 @@ interface ChatEvent {
 data class Message(
     val msg: String,
     val senderId: String,
-    var msgId: String = "",
+    val msgId: String,
     val type: String = "TEXT",
     val status: Int = 1,
-    val highFive: Boolean = false,
-    override val sentAt: Date = Date(),
-    val time: Long = System.currentTimeMillis()
+    val liked: Boolean = false,
+    val time: Long = System.currentTimeMillis(),
+    override val sentAt: Date = Date()
 ) : ChatEvent {
 
     /** Empty [Constructor] for Firebase */
-    constructor() : this("", "", "", "", 1, false, Date(0L))
+    constructor() : this("", "", "", "", 1, false, System.currentTimeMillis(), Date(0L))
 }
 
-data class DateHeader(val date: String)
+data class DateHeader(override val sentAt: Date, val context: Context) : ChatEvent {
+    val date: String = sentAt.formatAsHeader(context)
+}

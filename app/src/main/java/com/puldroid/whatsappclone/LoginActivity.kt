@@ -71,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoginActivity() {
         startActivity(
-            Intent(this, OtpActivity::class.java).putExtra("phoneNumber", phoneNumber)
+            Intent(this, OtpActivity::class.java).putExtra(PHONE_NUMBER, phoneNumber)
         )
         finish()
     }

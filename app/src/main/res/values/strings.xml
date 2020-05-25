@@ -10,4 +10,5 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="like_message">Like message</string>
+    <string name="welcome_to_whatsapp">Welcome to Whatsapp</string>
 </resources>

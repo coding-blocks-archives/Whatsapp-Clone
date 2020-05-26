@@ -43,8 +43,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-
     private fun validatePhoneNumber(phone: String): Boolean {
         if (phone.isEmpty()) {
             return false
@@ -53,19 +51,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun notifyUserBeforeVerify(message: String) {
-        alertDialogBuilder = MaterialAlertDialogBuilder(this)
-        alertDialogBuilder.setMessage(message)
-        alertDialogBuilder.setPositiveButton("Ok") { _, _ ->
-            showLoginActivity()
-        }
+        alertDialogBuilder = MaterialAlertDialogBuilder(this).apply {
+            setMessage(message)
+            setPositiveButton("Ok") { _, _ ->
+                showLoginActivity()
+            }
 
-        alertDialogBuilder.setNegativeButton("Edit") { dialog, _ ->
-            dialog.dismiss()
-        }
+            setNegativeButton("Edit") { dialog, _ ->
+                dialog.dismiss()
+            }
 
-        alertDialogBuilder.setCancelable(false)
-        alertDialogBuilder.create()
-        alertDialogBuilder.show()
+            setCancelable(false)
+            create()
+            show()
+        }
     }
 
 

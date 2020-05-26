@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:id="@+id/verfiyTv"
+        android:id="@+id/verifyTv"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +22,7 @@
 
 
     <TextView
+        android:id="@+id/waitingTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

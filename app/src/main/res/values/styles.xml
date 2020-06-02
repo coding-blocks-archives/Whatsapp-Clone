@@ -22,4 +22,9 @@
         <item name="cornerSizeBottomRight">8dp</item>
         <item name="cornerSizeTopRight">22dp</item>
     </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">60dp</item>
+    </style>
 </resources>

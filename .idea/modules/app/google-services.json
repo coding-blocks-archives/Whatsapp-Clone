@@ -8,7 +8,44 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:435447109205:android:25f4588a74f649d4d9a6dc",
+        "mobilesdk_app_id": "1:435447109205:android:a9e8178d0e3f84cad9a6dc",
+        "android_client_info": {
+          "package_name": "com.codingblocks.whatsappclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435447109205-3ce62fo1d5dqt8f3ppvsn2kaesr2pvs5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codingblocks.whatsappclone",
+            "certificate_hash": "045d03c53b977ce83094ddd639512ed015c8ffc0"
+          }
+        },
+        {
+          "client_id": "435447109205-j16rp9hlm2tiges9obtuctasr3o6re71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnXcGxVWAk44FbIQ1C5NWa8JrQUWsOf58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435447109205-j16rp9hlm2tiges9obtuctasr3o6re71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435447109205:android:c662054d4570752ad9a6dc",
         "android_client_info": {
           "package_name": "com.puldroid.whatsappclone"
         }

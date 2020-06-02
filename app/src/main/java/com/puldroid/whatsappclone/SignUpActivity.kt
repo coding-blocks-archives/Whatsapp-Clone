@@ -11,10 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.puldroid.whatsappclone.models.User
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -24,14 +25,35 @@ class SignUpActivity : AppCompatActivity() {
     private val auth by lazy {
         FirebaseAuth.getInstance()
     }
-    lateinit var downloadUrl: String
+    private val database by lazy {
+        FirebaseFirestore.getInstance()
+    }
+    private lateinit var downloadUrl: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        //Assignment 2 - Add Crop Image option along with a thumbnail using firebase extension - Video at end of series
         userImgView.setOnClickListener {
             checkPermissionForImage()
         }
-        //Assignment 2 - Add Crop Image option along with a thumbnail using firebase extension - Video at end of series
+        nextBtn.setOnClickListener {
+            val name = nameEt.text.toString()
+            if (!::downloadUrl.isInitialized) {
+                toast("Photo cannot be empty")
+            } else if (name.isEmpty()) {
+                toast("Name cannot be empty")
+            } else {
+                val user = User(name, downloadUrl, downloadUrl/*Needs to thumbnai url*/, auth.uid!!)
+                database.collection("users").document(auth.uid!!).set(user).addOnSuccessListener {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }.addOnFailureListener {
+                    nextBtn.isEnabled = true
+                }
+            }
+        }
 
     }
 
@@ -83,7 +105,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun startUpload(filePath: Uri) {
         nextBtn.isEnabled = false
-        val ref = storage.reference.child("uploads/" +  auth.currentUser?.uid.toString())
+        val ref = storage.reference.child("uploads/" + auth.uid.toString())
         val uploadTask = ref.putFile(filePath)
         uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
             if (!task.isSuccessful) {

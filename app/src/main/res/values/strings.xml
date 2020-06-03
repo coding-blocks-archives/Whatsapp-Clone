@@ -13,4 +13,6 @@
     <string name="welcome_to_whatsapp">Welcome to Whatsapp</string>
     <string name="waiting_text">Waiting to automatically detect an SMS sent to\n %s Wrong Number?</string>
     <string name="verify_number">Verify %s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

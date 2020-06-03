@@ -27,4 +27,13 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">60dp</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.App">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/purple200</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>

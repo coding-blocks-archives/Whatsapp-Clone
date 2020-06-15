@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
         android:layout_height="wrap_content"
+        android:elevation="10dp"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
@@ -18,10 +19,12 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
+        android:elevation="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         app:tabIndicatorColor="@android:color/white"
+        app:tabTextColor="@android:color/darker_gray"
         app:tabSelectedTextColor="@android:color/white">
 
         <com.google.android.material.tabs.TabItem

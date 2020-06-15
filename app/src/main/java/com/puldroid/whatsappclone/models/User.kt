@@ -9,7 +9,9 @@ data class User(
     val online: Boolean,
     val uid: String
 ) {
+    /** Empty [Constructor] for Firebase */
     constructor() : this("", "", "", "", "Hey There, I am using whatsapp", false, "")
+
     constructor(name: String, imageUrl: String, thumbImage: String, uid: String) :
             this(name, imageUrl, thumbImage, "", uid = uid, status = "Hey There, I am using whatsapp", online = false)
 

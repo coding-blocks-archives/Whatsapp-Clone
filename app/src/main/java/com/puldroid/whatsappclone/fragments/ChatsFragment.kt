@@ -1,27 +1,20 @@
 package com.puldroid.whatsappclone.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.firebase.ui.database.paging.DatabasePagingOptions
-import com.firebase.ui.database.paging.FirebaseRecyclerPagingAdapter
-import com.firebase.ui.database.paging.LoadingState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.puldroid.whatsappclone.ChatActivity
 import com.puldroid.whatsappclone.R
 import com.puldroid.whatsappclone.models.Inbox
-import com.puldroid.whatsappclone.models.User
 import kotlinx.android.synthetic.main.fragment_chats.*
 
 

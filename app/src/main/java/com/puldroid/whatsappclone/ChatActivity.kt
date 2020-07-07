@@ -107,6 +107,11 @@ class ChatActivity : AppCompatActivity() {
         chatAdapter.highFiveClick = { id, status ->
             updateHighFive(id, status)
         }
+        updateReadCount()
+    }
+
+    private fun updateReadCount() {
+        getInbox(mCurrentUid, friendId).child("count").setValue(0)
     }
 
     private fun updateHighFive(id: String, status: Boolean) {

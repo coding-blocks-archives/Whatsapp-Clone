@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/like_message"
         android:visibility="gone"
+        android:src="@drawable/ic_high_five_inverted"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/materialCardView3" />
 

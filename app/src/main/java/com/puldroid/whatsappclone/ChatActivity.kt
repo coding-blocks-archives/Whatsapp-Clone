@@ -15,6 +15,7 @@ import com.puldroid.whatsappclone.utils.KeyboardVisibilityUtil
 import com.puldroid.whatsappclone.utils.isSameDayAs
 import com.squareup.picasso.Picasso
 import com.vanniktech.emoji.EmojiManager
+import com.vanniktech.emoji.EmojiPopup
 import com.vanniktech.emoji.google.GoogleEmojiProvider
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.coroutines.CoroutineScope
@@ -54,8 +55,8 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         EmojiManager.install(GoogleEmojiProvider())
         setContentView(R.layout.activity_chat)
-        keyboardVisibilityHelper = KeyboardVisibilityUtil(root) {
-
+        keyboardVisibilityHelper = KeyboardVisibilityUtil(rootView) {
+            msgRv.scrollToPosition(mutableItems.size - 1)
         }
 
         FirebaseFirestore.getInstance().collection("users").document(mCurrentUid).get()
@@ -73,6 +74,10 @@ class ChatActivity : AppCompatActivity() {
         nameTv.text = name
         Picasso.get().load(image).into(userImgView)
 
+        val emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(msgEdtv)
+        smileBtn.setOnClickListener {
+            emojiPopup.toggle()
+        }
         swipeToLoad.setOnRefreshListener {
             val workerScope = CoroutineScope(Dispatchers.Main)
             workerScope.launch {
@@ -97,8 +102,15 @@ class ChatActivity : AppCompatActivity() {
             } else {
                 addMessage(msg)
             }
-
         }
+
+        chatAdapter.highFiveClick = { id, status ->
+            updateHighFive(id, status)
+        }
+    }
+
+    private fun updateHighFive(id: String, status: Boolean) {
+        getMessages(friendId).child(id).updateChildren(mapOf("liked" to status))
     }
 
     private fun addMessage(event: Message) {
@@ -117,12 +129,20 @@ class ChatActivity : AppCompatActivity() {
         }
         mutableItems.add(event)
 
-        chatAdapter.notifyItemInserted(mutableItems.size - 1)
-        msgRv.scrollToPosition(mutableItems.size - 1)
+        chatAdapter.notifyItemInserted(mutableItems.size)
+        msgRv.scrollToPosition(mutableItems.size + 1)
     }
 
     private fun updateMessage(msg: Message) {
+        val position = mutableItems.indexOfFirst {
+            when (it) {
+                is Message -> it.msgId == msg.msgId
+                else -> false
+            }
+        }
+        mutableItems[position] = msg
 
+        chatAdapter.notifyItemChanged(position)
     }
 
     private fun listenMessages(newMsg: (msg: Message, update: Boolean) -> Unit) {
@@ -212,14 +232,14 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        root.viewTreeObserver
+        rootView.viewTreeObserver
             .addOnGlobalLayoutListener(keyboardVisibilityHelper.visibilityListener)
     }
 
 
     override fun onPause() {
         super.onPause()
-        root.viewTreeObserver
+        rootView.viewTreeObserver
             .removeOnGlobalLayoutListener(keyboardVisibilityHelper.visibilityListener)
     }
 

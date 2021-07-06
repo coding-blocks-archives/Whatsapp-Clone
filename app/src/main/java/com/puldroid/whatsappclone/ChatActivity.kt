@@ -30,13 +30,13 @@ const val USER_NAME = "userName"
 class ChatActivity : AppCompatActivity() {
 
     private val friendId: String by lazy {
-        intent.getStringExtra(USER_ID)
+        intent.getStringExtra(USER_ID).toString()
     }
     private val name: String by lazy {
-        intent.getStringExtra(USER_NAME)
+        intent.getStringExtra(USER_NAME).toString()
     }
     private val image: String by lazy {
-        intent.getStringExtra(USER_THUMB_IMAGE)
+        intent.getStringExtra(USER_THUMB_IMAGE).toString()
     }
     private val mCurrentUid: String by lazy {
         FirebaseAuth.getInstance().uid!!
